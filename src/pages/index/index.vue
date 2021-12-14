@@ -1,16 +1,7 @@
 
 <script>
 import Taro from "@tarojs/taro"
-import {
-  h,
-  ref,
-  render,
-  createVNode,
-  onMounted,
-  resolveComponent,
-  defineAsyncComponent,
-  resolveDynamicComponent,
-} from "vue"
+import { ref, onMounted, defineAsyncComponent } from "vue"
 import "./index.css"
 //组件需要全局引入。此处只是测试
 import MSearch from "../../components/common/MSearch/index.vue"
@@ -41,28 +32,20 @@ export default {
         children: {
           //其实是插槽，default是默认插槽
           header: {
+            componentId: "1",
             componentName: "MSearch",
-
+            icon: "w-icon-add",
+            name: "搜索",
             options: {
-              placeholder: "开始你的搜索……",
-              background: "#ccc",
+              placeholder: "开始搜索吧",
+              background: "white",
+              inputBackground: "#ccc",
             },
+            data: ["婴幼儿奶粉", "奶嘴", "尿不湿"],
+            children: {},
           },
 
           default: [
-            {
-              componentId: "1",
-              componentName: "MSearch",
-              icon: "w-icon-add",
-              name: "搜索",
-              options: {
-                placeholder: "开始搜索吧",
-                background: "white",
-                inputBackground: "#ccc",
-              },
-              data: ["婴幼儿奶粉", "奶嘴", "尿不湿"],
-              children: {},
-            },
             {
               componentName: "MTxt",
               name: "标题/文本",

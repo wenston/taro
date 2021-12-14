@@ -1,6 +1,6 @@
 <template>
-  <view class="mGoods">
-    <view class="mGoodsItem"
+  <view :class="css.mGoods">
+    <view :class="css.mGoodsItem"
       v-for="(item,index) in data"
       :key="index">
       <view>
@@ -14,12 +14,13 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue"
+import css from "./index.module.css"
 export default defineComponent({
   props: {
     api: { type: String, default: "" },
     //其他参数略
   },
-  setup(props, ctx) {
+  setup(props) {
     const data = ref<Record<any, any>>([])
     onMounted(() => {
       //数据请求，请求的api地址可以写在组件的说明里，传入api即可
@@ -41,22 +42,8 @@ export default defineComponent({
     })
     return {
       data,
+      css,
     }
   },
 })
 </script>
-
-<style >
-.mGoods {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 30px;
-  flex-wrap: wrap;
-}
-.mGoods .mGoodsItem {
-  width: calc((100% - 3px -60px) / 2);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-  border-radius: 10px;
-}
-</style>
