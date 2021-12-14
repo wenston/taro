@@ -2,7 +2,8 @@
   <view :class="css.mGoods">
     <view :class="css.mGoodsItem"
       v-for="(item,index) in data"
-      :key="index">
+      :key="index"
+      @tap="goto(item)">
       <view>
 
         <image mode="scaleToFill"
@@ -14,10 +15,12 @@
 </template>
 <script lang="ts">
 import { defineComponent, onMounted, ref } from "vue"
+import Taro from "@tarojs/taro"
 import css from "./index.module.css"
 export default defineComponent({
   props: {
     api: { type: String, default: "" },
+    navigateTo: { type: String, default: "" },
     //其他参数略
   },
   setup(props) {
@@ -29,20 +32,28 @@ export default defineComponent({
         {
           name: "爱他美奶粉1罐",
           price: "￥300",
+          proId: "1123",
         },
         {
           name: "某某某奶粉",
           price: "￥200",
+          proId: "2301",
         },
         {
           name: "奶嘴",
           price: "￥50",
+          proId: "2190",
         },
       ]
     })
     return {
       data,
       css,
+      goto: (item: Record<string, any>) => {
+        if (props.navigateTo) {
+          Taro.navigateTo({ url: `${props.navigateTo}?proId=${item.proId}` })
+        }
+      },
     }
   },
 })
