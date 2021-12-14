@@ -1,0 +1,16 @@
+.mPage {
+  min-height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+.pageContent {
+  flex: 1;
+}
+.mSupport {
+  font-size: 20px;
+  color: #aaa;
+  padding: 30px;
+  display: flex;
+  justify-content: center;
+}

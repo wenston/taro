@@ -1,5 +1,6 @@
 
 <script>
+import Taro from "@tarojs/taro"
 import {
   h,
   ref,
@@ -15,12 +16,14 @@ import "./index.css"
 import MSearch from "../../components/common/MSearch/index.vue"
 import MPage from "../../components/common/MPage/index.vue"
 import MGoods from "../../components/common/MGoods/index.vue"
+import MTxt from "../../components/common/MTxt"
 import compiler from "../../compiler"
 export default {
   components: {
     MSearch,
     MPage,
     MGoods,
+    MTxt,
     // MSearch: defineAsyncComponent(() =>
     //   import("../../components/common/MSearch/index.vue")
     // ),
@@ -59,6 +62,20 @@ export default {
               },
               data: ["婴幼儿奶粉", "奶嘴", "尿不湿"],
               children: {},
+            },
+            {
+              componentName: "MTxt",
+              name: "标题/文本",
+              options: {
+                content: "商品列表",
+                style: {
+                  "font-size": "28px",
+                  "font-weight": "bold",
+                  padding: "10px 15px",
+                  marginBottom: "0",
+                  textAlign: "center",
+                },
+              },
             },
             {
               componentId: "1",

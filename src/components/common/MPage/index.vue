@@ -1,17 +1,18 @@
 <template>
-  <view class="mPage"
+  <view :class="css.mPage"
     :style="pageStyle">
-    <view class="mHeader"
+    <view :class="css.mHeader"
       v-if="$slots.header">
       <slot name="header" />
     </view>
-    <view class="pageContent">
+    <view :class="css.pageContent">
       <slot />
     </view>
-    <view class="mSupport"><text>链多多提供技术支持</text></view>
+    <view :class="css.mSupport"><text>链多多提供技术支持</text></view>
   </view>
 </template>
 <script lang="ts">
+import css from "./index.module.css"
 import { defineComponent, ref, computed } from "vue"
 export default defineComponent({
   props: {
@@ -22,25 +23,8 @@ export default defineComponent({
       pageStyle: computed(() => {
         return props.style
       }),
+      css,
     }
   },
 })
 </script>
-<style module="css">
-.mPage {
-  min-height: 100%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-.pageContent {
-  flex: 1;
-}
-.mSupport {
-  font-size: 20px;
-  color: #aaa;
-  padding: 30px;
-  display: flex;
-  justify-content: center;
-}
-</style>
