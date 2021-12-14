@@ -10,6 +10,5 @@ module.exports = {
       },
     ],
   ],
-  vueJsx: true,
   plugins: ["@vue/babel-plugin-jsx"],
 };
