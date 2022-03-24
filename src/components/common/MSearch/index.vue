@@ -1,18 +1,18 @@
-
- <template>
-  <view class="m-search"
-    :style="{background}">
-    <input type="text"
+<template>
+  <view class="m-search" :style="{ background }">
+    <input
+      type="text"
       class="m-search-input"
       :value="txt"
       :placeholder="ph"
-      :style="inputStyle" />
+      :style="inputStyle"
+    />
   </view>
 </template>
 <script lang="ts">
-import "./index.css"
-import type { PropType } from "vue"
-import { onMounted, computed, defineComponent, ref } from "vue"
+import "./index.css";
+import type { PropType } from "vue";
+import { onMounted, computed, defineComponent, ref } from "vue";
 
 export default defineComponent({
   props: {
@@ -22,31 +22,31 @@ export default defineComponent({
     icon: { type: String, default: "" },
     data: { type: Array as PropType<string[]>, default: () => [] },
   },
-  setup(props, ctx) {
-    const txt = ref("")
-    const ph = ref("")
-    const interval = ref()
+  setup(props) {
+    const txt = ref("");
+    const ph = ref("");
+    const interval = ref();
     function loop() {
       if (props.data && props.data.length) {
-        let i = 0
+        let i = 0;
         interval.value = setInterval(() => {
-          ph.value = props.data[i % props.data.length]
+          ph.value = props.data[i % props.data.length];
 
-          i++
-        }, 1500)
+          i++;
+        }, 1500);
       } else {
-        ph.value = props.placeholder
+        ph.value = props.placeholder;
       }
     }
-    onMounted(loop)
+    onMounted(loop);
     return {
       txt,
       ph,
       loop,
       inputStyle: computed(() => {
-        return `background:${props.inputBackground}`
+        return `background:${props.inputBackground}`;
       }),
-    }
+    };
   },
-})
+});
 </script>
