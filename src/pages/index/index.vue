@@ -1,32 +1,32 @@
-
 <script lang="ts">
-import { ref, onMounted } from "vue"
-import "./index.css"
+import { ref, onMounted } from "vue";
+import "./index.css";
 //组件可全局引入。此处只是测试
-import MSearch from "../../components/common/MSearch/index.vue"
-import MPage from "../../components/common/MPage/index.vue"
-import MGoods from "../../components/common/MGoods/index.vue"
-import MTxt from "../../components/common/MTxt"
-import compiler from "../../compiler"
+import MSearch from "../../components/common/MSearch/index.vue";
+import MPage from "../../components/common/MPage/index.vue";
+import MGoods from "../../components/common/MGoods/index.vue";
+import MTxt from "../../components/common/MTxt";
+import compiler from "../../compiler";
 export default {
   components: {
     MSearch,
     MPage,
     MGoods,
-    MTxt,
+    MTxt
     // MSearch: defineAsyncComponent(() =>
     //   import("../../components/common/MSearch/index.vue")
     // ),
   },
   setup() {
-    const pageComponents = ref({})
+    const pageComponents = ref({});
+
     onMounted(() => {
       pageComponents.value = {
         componentName: "MPage",
         options: {
           style: {
-            background: "#e1e1e1",
-          },
+            background: "#e1e1e1"
+          }
         },
         children: {
           //其实是插槽，default是默认插槽
@@ -38,10 +38,10 @@ export default {
             options: {
               placeholder: "开始搜索吧",
               background: "white",
-              inputBackground: "#ccc",
+              inputBackground: "#ccc"
             },
             data: ["婴幼儿奶粉", "奶嘴", "尿不湿"],
-            children: {},
+            children: {}
           },
 
           default: [
@@ -55,9 +55,9 @@ export default {
                   "font-weight": "bold",
                   padding: "10px 15px",
                   marginBottom: "0",
-                  textAlign: "center",
-                },
-              },
+                  textAlign: "center"
+                }
+              }
             },
             {
               componentId: "1",
@@ -65,16 +65,16 @@ export default {
               name: "搜索",
               options: {
                 api: "/goods/list",
-                navigateTo: "/pages/goods-preview/index",
+                navigateTo: "/pages/goods-preview/index"
               },
 
-              children: {},
-            },
-          ],
-        },
-      }
-    })
-    return () => compiler(pageComponents.value)
-  },
-}
+              children: {}
+            }
+          ]
+        }
+      };
+    });
+    return () => compiler(pageComponents.value);
+  }
+};
 </script>

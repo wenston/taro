@@ -14,7 +14,7 @@ function transform_inline_px(
       if (typeof v === "string") {
         let pxs: string[] | null = v.match(/\d+px/g);
         if (pxs && pxs.length) {
-          pxs.forEach((px) => {
+          pxs.forEach(px => {
             const result = Taro.pxTransform(parseFloat(px));
             const reg = new RegExp(px, "g");
             v = v.replace(reg, result);
@@ -45,7 +45,7 @@ function createChildren(component, compiler) {
 
   for (const slot in component.children) {
     if (isArray(component.children[slot])) {
-      slots[slot] = () => component.children[slot].map((c) => compiler(c));
+      slots[slot] = () => component.children[slot].map(c => compiler(c));
     } else if (isObject(component.children[slot])) {
       slots[slot] = () => compiler(component.children[slot]);
     } else {
